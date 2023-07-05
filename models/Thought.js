@@ -34,7 +34,7 @@ function formatDate(date) {
 };
 
 thoughtSchema
-.virtuals('ractionCount')
+.virtuals('reactionCount')
 .get(function () {
     return this.reactions.length;
 });
