@@ -13,7 +13,7 @@ module.exports = {
   // single user
   async getUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.id }).populate(
+      const user = await User.findOne({ _id: req.params.userId }).populate(
         "thoughts",
         "friends"
       );
@@ -41,7 +41,7 @@ module.exports = {
   async updateUser(req, res) {
     try {
       const user = await User.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.userId },
         { $set: req.body },
         { runValidators: true, new: true }
       );
@@ -58,7 +58,7 @@ module.exports = {
   // delete a user
   async deleteUser(req, res) {
     try {
-      const user = await findOneAndDelete({ _id: req.params.id });
+      const user = await findOneAndDelete({ _id: req.params.userId });
 
       if (!user) {
         res.status(404).json({ message: "No user with this id." });

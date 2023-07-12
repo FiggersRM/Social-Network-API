@@ -13,7 +13,7 @@ module.exports = {
     // get single thought
     async getThought(req, res) {
         try {
-            const thought = await Thought.findOne({ _id: req.params.id }).populate("reactions");
+            const thought = await Thought.findOne({ _id: req.params.thoughtId }).populate("reactions");
 
             if(!thought) {
                 return res.status(404).json({ message: "No thought with this id." })
@@ -29,7 +29,7 @@ module.exports = {
         try {
             const thought = await Thought.create(req.body);
             const user = await User.findOneAndUpdate(
-                { username: req.body.username },
+                { username: thought.username },
                 { $addToSet: { thoughts: thought._id } },
                 { runValidators: true, new: true}
             );
@@ -46,7 +46,7 @@ module.exports = {
     async updateThought(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
-                { _id: req.params.id },
+                { _id: req.params.thoughtId },
                 { $set: req.body },
                 { runValidators: true, new: true }
             );
@@ -71,7 +71,7 @@ module.exports = {
         }
     },
     // post a reaction
-    async createReaction(req, res) {
+    async postReaction(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
