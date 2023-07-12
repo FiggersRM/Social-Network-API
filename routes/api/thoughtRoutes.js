@@ -18,4 +18,4 @@ router.route('./:thoughtId').get(getThought).put(updateThought).delete(deleteTho
 // /api/thoughts/:thoughtId/reactions
 router.route('./:thoughtId/reactions').post(postReaction).delete(deleteReaction);
 
-moduke.exports = router;
+module.exports = router;

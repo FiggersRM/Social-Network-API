@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 const dayjs = require("dayjs");
 
@@ -34,7 +34,7 @@ function formatDate(date) {
 };
 
 thoughtSchema
-.virtuals('reactionCount')
+.virtual('reactionCount')
 .get(function () {
     return this.reactions.length;
 });
