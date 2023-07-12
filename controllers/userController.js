@@ -11,7 +11,7 @@ module.exports = {
     }
   },
   // single user
-  async getsUser(req, res) {
+  async getUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.id }).populate(
         "thoughts",
