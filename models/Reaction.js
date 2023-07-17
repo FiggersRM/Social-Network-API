@@ -13,7 +13,8 @@ const reactionSchema = new Schema({
   },
   username: {
     type: String,
-    required: true
+    required: true,
+    ref: 'user'
   },
   createdAt: {
     type: Date,
@@ -30,7 +31,7 @@ const reactionSchema = new Schema({
 );
 
 function formatDate(date) {
-    return dayjs(date).format("M/D/YYYY");
+    return dayjs(date).format("M/D/YYYY h:m:s A");
 };
 
 module.exports = reactionSchema;

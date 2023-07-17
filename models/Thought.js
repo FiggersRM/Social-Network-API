@@ -18,6 +18,7 @@ const thoughtSchema = new Schema(
     username: {
       type: String,
       required: true,
+      ref: 'user'
     },
     reactions: [reactionSchema],
   },
@@ -31,7 +32,7 @@ const thoughtSchema = new Schema(
 );
 
 function formatDate(date) {
-  return dayjs(date).format("M/D/YYYY");
+  return dayjs(date).format("M/D/YYYY h:m:s A");
 };
 
 thoughtSchema
