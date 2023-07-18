@@ -1,4 +1,5 @@
 const { Thought, User } = require('../models');
+const { Schema, model } = require('mongoose');
 
 module.exports = {
     // get all thoughts
@@ -89,7 +90,7 @@ module.exports = {
     // delete a reaction
     async deleteReaction(req, res) {
         try {
-            const thought = Thought.findOneAndUpdate(
+            const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
                 { $pull: { reactions: { reactionId: req.params.reactionId } } },
                 { runValidators: true, new: true}
@@ -102,6 +103,7 @@ module.exports = {
             res.json(thought);
         } catch (err) {
             res.status(500).json(err);
+            console.log(err);
         }
     }
 }
